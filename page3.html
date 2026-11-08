@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<!--
+    Page:    About Us & Contact
+    Site:    NewGen AI Solutions (fictional AI consulting firm)
+    Author:  Stone Derrick, Group 7 (with Caleb Settle and Griffin Capobianco)
+    Course:  ITEC 101
+    Date:    November 7, 2026
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us &amp; Contact | NewGen AI Solutions</title>
+
+    <!-- ===== Internal style sheet =====
+         Copy this whole <style> block into every page of the site
+         so all pages share the same colors, fonts, and layout. -->
+    <style>
+        /* ---------- Brand colors (used everywhere below) ---------- */
+        :root {
+            --navy: #0B1E3A;
+            --navy-dark: #071327;
+            --teal: #2DD4BF;
+            --teal-dark: #0F766E;
+            --amber: #F5B841;
+            --violet: #A78BFA;
+            --page: #F4F7FB;
+            --card: #FFFFFF;
+            --text: #1E293B;
+            --muted: #475569;
+            --line: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* ---------- body ---------- */
+        body {
+            margin: 0;
+            background-color: var(--page);
+            color: var(--text);
+            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* ---------- header ---------- */
+        header {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy) 60%, #13325C);
+            color: #FFFFFF;
+            padding: 20px 24px 56px;
+            border-bottom: 4px solid var(--teal);
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .top-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand {
+            margin: 0;
+            color: #FFFFFF;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .brand span {
+            color: var(--teal);
+        }
+
+        nav a {
+            color: #CBD5E1;
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 0.95rem;
+        }
+
+        nav a:first-child {
+            margin-left: 0;
+        }
+
+        nav a:hover,
+        nav a.current {
+            color: var(--teal);
+        }
+
+        /* ---------- h1 ---------- */
+        h1 {
+            font-size: 2.75rem;
+            line-height: 1.15;
+            margin: 48px 0 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            color: #CBD5E1;
+            font-size: 1.15rem;
+            max-width: 620px;
+            margin: 0;
+        }
+
+        /* ---------- main ---------- */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 8px 24px 40px;
+        }
+
+        section {
+            background-color: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 32px;
+            margin-top: 32px;
+        }
+
+        /* small "code comment" label above each section heading */
+        .label {
+            font-family: Consolas, "Courier New", monospace;
+            color: var(--teal-dark);
+            font-size: 0.85rem;
+            margin: 0 0 4px;
+        }
+
+        /* ---------- h2 ---------- */
+        h2 {
+            color: var(--navy);
+            font-size: 1.9rem;
+            line-height: 1.25;
+            margin: 0 0 16px;
+        }
+
+        h3 {
+            color: var(--navy);
+            font-size: 1.15rem;
+            margin: 0 0 4px;
+        }
+
+        /* ---------- p ---------- */
+        p {
+            margin: 0 0 14px;
+            color: var(--muted);
+        }
+
+        /* ---------- img ---------- */
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        figure {
+            margin: 0 0 22px;
+        }
+
+        figcaption {
+            font-size: 0.9rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .mission {
+            border-left: 4px solid var(--teal);
+            background-color: #F0FDFA;
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ---------- Team cards ---------- */
+        .team {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .member {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 22px;
+            border-top: 5px solid var(--teal);
+        }
+
+        .member.stone  { border-top-color: var(--amber); }
+        .member.caleb  { border-top-color: var(--teal); }
+        .member.griffin { border-top-color: var(--violet); }
+
+        /* round "headshot" made with initials */
+        .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 14px;
+        }
+
+        .stone .avatar   { background-color: var(--amber); }
+        .caleb .avatar   { background-color: var(--teal); }
+        .griffin .avatar { background-color: var(--violet); }
+
+        .role {
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.85rem;
+            color: var(--teal-dark);
+            margin-bottom: 12px;
+        }
+
+        /* ---------- Contact ---------- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 32px;
+        }
+
+        .contact-details p {
+            margin-bottom: 16px;
+        }
+
+        .contact-details strong {
+            display: block;
+            color: var(--navy);
+        }
+
+        .contact-details a {
+            color: var(--teal-dark);
+        }
+
+        form label {
+            display: block;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+            border: 1px solid #CBD5E1;
+            border-radius: 8px;
+            font: inherit;
+            background-color: #F8FAFC;
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            outline: 2px solid var(--teal);
+            border-color: var(--teal);
+        }
+
+        form button {
+            background-color: var(--navy);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 26px;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: var(--teal-dark);
+        }
+
+        .form-note {
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        /* ---------- Hours table ---------- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        th {
+            background-color: var(--navy);
+            color: #FFFFFF;
+        }
+
+        td.note {
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* ---------- FAQ ---------- */
+        .faq {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 32px;
+        }
+
+        .faq h3::before {
+            content: "Q. ";
+            color: var(--teal-dark);
+        }
+
+        /* ---------- footer ---------- */
+        footer {
+            background-color: var(--navy-dark);
+            color: #94A3B8;
+            text-align: center;
+            padding: 28px 24px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            color: #94A3B8;
+            margin: 4px 0;
+        }
+
+        /* ---------- Phones and small screens ---------- */
+        @media (max-width: 760px) {
+            h1 { font-size: 2.1rem; margin-top: 32px; }
+            section { padding: 22px; }
+            .team,
+            .contact-grid,
+            .faq {
+                grid-template-columns: 1fr;
+            }
+            nav a { margin-left: 0; margin-right: 14px; }
+            th, td { padding: 10px 6px; font-size: 0.88rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER: logo, navigation, page title ===== -->
+    <header>
+        <div class="header-inner">
+            <div class="top-bar">
+                <p class="brand">NewGen <span>AI</span> Solutions</p>
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="about.html" class="current">About &amp; Contact</a>
+                </nav>
+            </div>
+
+            <h1>About Us &amp; Contact</h1>
+            <p class="tagline">We're three people who believe AI should be something your team actually uses,
+                not just something they've heard about. Here's who we are and how to reach us.</p>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+
+        <!-- ----- Section 1: Origin Story ----- -->
+        <section id="story">
+            <p class="label">// 01 &mdash; where it started</p>
+            <h2>Our Origin Story</h2>
+
+            <figure>
+                <img src="newgen-ai-lightbulb.png"
+                     alt="A glowing lightbulb made of connected network nodes, with three highlighted nodes in gold, teal, and purple">
+                <figcaption>One idea, one network. The three glowing nodes are the three of us.</figcaption>
+            </figure>
+
+            <p>Every company has a story. Ours starts with a spreadsheet that refused to cooperate.</p>
+
+            <p>It was a Thursday night in a cramped campus study room in Columbia, South Carolina. Three students,
+                Stone, Caleb, and Griffin, were supposed to be finishing a group project. Instead, Caleb was telling
+                us about a farmer at the Saturday market who spent every Sunday night guessing how much produce to
+                bring the next week. Too much, and it went to waste. Too little, and customers went home empty-handed.</p>
+
+            <p>Griffin opened his laptop and, half as a joke, built a simple model from two years of her sales
+                receipts. Stone grabbed a dry-erase marker and sketched out how she could use it every week without
+                ever touching a line of code. Caleb drove over the next Saturday to show her how it worked. A month
+                later she was wasting less, selling more, and telling every vendor at the market about "those
+                AI kids."</p>
+
+            <p>That's when it clicked. Plenty of businesses have <em>heard</em> about artificial intelligence.
+                Almost nobody had shown them how to use it. So we turned that study room into an office, and
+                NewGen AI Solutions was born.</p>
+
+            <p class="mission">Our mission: help the world understand and use AI to make workflows more efficient,
+                bridging the gap between advanced technology and real-world results through hands-on training
+                and support.</p>
+        </section>
+
+        <!-- ----- Section 2: Meet the Founders ----- -->
+        <section id="team">
+            <p class="label">// 02 &mdash; the people behind the models</p>
+            <h2>Meet the Founders</h2>
+            <p>We blend business strategy, client support, and engineering so every AI system we deliver is
+                planned well, explained clearly, and built to last.</p>
+
+            <div class="team">
+                <article class="member stone">
+                    <div class="avatar">SD</div>
+                    <h3>Stone Derrick</h3>
+                    <p class="role">Co-Founder &amp; Chief Business Strategist</p>
+                    <p>Stone is the planner behind every project. He studies how businesses in different industries
+                        really operate, then builds the strategy models that decide where AI will help the most.
+                        Once a plan is ready, he hands it to Caleb to deliver and to Griffin to build.</p>
+                </article>
+
+                <article class="member caleb">
+                    <div class="avatar">CS</div>
+                    <h3>Caleb Settle</h3>
+                    <p class="role">Co-Founder &amp; Head of Client Outreach</p>
+                    <p>Caleb is usually the first person our clients meet. He listens to what a business needs,
+                        explains our solutions in plain English, and guides each client through onboarding and setup.
+                        Behind the scenes, he keeps our CRM, scheduling, and ticketing tools running so no question
+                        gets lost.</p>
+                </article>
+
+                <article class="member griffin">
+                    <div class="avatar">GC</div>
+                    <h3>Griffin Capobianco</h3>
+                    <p class="role">Co-Founder &amp; Lead AI Engineer</p>
+                    <p>Griffin keeps the machines honest. Using Python, Java, and machine learning training, he builds,
+                        tests, and fine-tunes every AI system we install so it runs bug-free in a client's everyday
+                        work. He's also great at explaining how AI works to people with no tech background.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ----- Section 3: Contact ----- -->
+        <section id="contact">
+            <p class="label">// 03 &mdash; say hello</p>
+            <h2>Contact Us</h2>
+
+            <div class="contact-grid">
+                <!-- Mock contact details (all fictional) -->
+                <div class="contact-details">
+                    <p><strong>Email</strong>
+                        <a href="mailto:hello@newgenai.example">hello@newgenai.example</a></p>
+
+                    <p><strong>Phone</strong>
+                        (803) 555-0147</p>
+
+                    <p><strong>Office</strong>
+                        Room 101 (yes, like the class), Innovation Hall<br>
+                        Columbia, SC 29208</p>
+
+                    <p><strong>Social</strong>
+                        Instagram: @newgen.ai.solutions<br>
+                        LinkedIn: NewGen AI Solutions<br>
+                        X: @NewGenAI_SC<br>
+                        TikTok: @newgenaisolutions</p>
+                </div>
+
+                <!-- Mock contact form (it does not actually send anything) -->
+                <form action="#" method="post">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+
+                    <label for="industry">Industry</label>
+                    <select id="industry" name="industry">
+                        <option>Retail</option>
+                        <option>Agriculture</option>
+                        <option>Healthcare</option>
+                        <option>Insurance</option>
+                        <option>Manufacturing</option>
+                        <option>Something else</option>
+                    </select>
+
+                    <label for="message">How can AI help your business?</label>
+                    <textarea id="message" name="message" rows="5"
+                              placeholder="Tell us about the task that eats up your team's time..."></textarea>
+
+                    <button type="submit">Send Message</button>
+                    <p class="form-note">We reply within one business day. (This is a mock form for a class project.)</p>
+                </form>
+            </div>
+        </section>
+
+        <!-- ----- Section 4: Hours of Operation ----- -->
+        <section id="hours">
+            <p class="label">// 04 &mdash; when we're online</p>
+            <h2>Hours of Operation</h2>
+
+            <table>
+                <tr>
+                    <th>Day</th>
+                    <th>Hours</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td>Monday &ndash; Thursday</td>
+                    <td>9:00 AM &ndash; 6:00 PM</td>
+                    <td class="note">Full consulting and support</td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td>9:00 AM &ndash; 3:00 PM</td>
+                    <td class="note">Afternoons are reserved for debugging</td>
+                </tr>
+                <tr>
+                    <td>Saturday</td>
+                    <td>10:00 AM &ndash; 1:00 PM</td>
+                    <td class="note">Free "AI Office Hours," walk-ins welcome</td>
+                </tr>
+                <tr>
+                    <td>Sunday</td>
+                    <td>Closed</td>
+                    <td class="note">Even neural networks need rest</td>
+                </tr>
+            </table>
+
+            <p>After hours? Our virtual assistant, NOVA, answers basic questions 24/7 and passes anything tricky
+                to a real human the next morning.</p>
+        </section>
+
+        <!-- ----- Section 5: FAQ ----- -->
+        <section id="faq">
+            <p class="label">// 05 &mdash; you asked, we answered</p>
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq">
+                <div>
+                    <h3>Is AI going to replace my employees?</h3>
+                    <p>Nope. We take the repetitive work off your team's plate, like data entry, sorting emails,
+                        and forecasting inventory, so your people can focus on the work that needs a human.</p>
+                </div>
+
+                <div>
+                    <h3>I know nothing about AI. Can you still help?</h3>
+                    <p>That's exactly who we built this company for. We explain everything in plain language
+                        and train your team so they feel confident long after we leave.</p>
+                </div>
+
+                <div>
+                    <h3>What industries do you work with?</h3>
+                    <p>Retail, agriculture, healthcare, insurance, manufacturing, and plenty more. If your business
+                        has a problem that involves data, we'd love to hear about it.</p>
+                </div>
+
+                <div>
+                    <h3>How much does it cost?</h3>
+                    <p>Every project gets a private quote based on its size, and our prices are built to stay
+                        competitive for small businesses. Your first 30-minute consultation is always free.</p>
+                </div>
+
+                <div>
+                    <h3>Is there a robot at the front desk?</h3>
+                    <p>Not yet. Right now the front desk is a coffee maker and a very friendly human named Caleb.
+                        NOVA covers the late-night shift.</p>
+                </div>
+
+                <div>
+                    <h3>Do you offer student discounts?</h3>
+                    <p>Yes! Student-run startups get 20% off their first project. We remember what a ramen budget
+                        feels like.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 NewGen AI Solutions &middot; Smarter workflows, real results.</p>
+        <p>A fictional business created for ITEC 101 by Group 7: Stone Derrick, Caleb Settle, and Griffin Capobianco.</p>
+    </footer>
+
+</body>
+</html>
